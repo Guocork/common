@@ -11,3 +11,27 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+use crate::http::Client;
+use crate::scm::driver::DriverTrait;
+use crate::scm::content::ContentService;
+use crate::scm::git::GitService;
+use crate::scm::repo::RepositoryService;
+
+pub struct GiteaDriver {
+    pub client: Client,
+}
+
+impl DriverTrait for GiteaDriver{
+    fn contents(&self) -> Box<dyn ContentService> {
+        todo!()
+    }
+
+    fn git(&self) -> Box<dyn GitService> {
+        todo!()
+    }
+
+    fn repositories(&self) -> Box<dyn RepositoryService> {
+        todo!()
+    }
+}

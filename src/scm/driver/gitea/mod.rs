@@ -19,3 +19,26 @@ pub mod git;
 pub mod pr;
 pub mod repo;
 mod utils;
+
+use self::constants::GITEA_ENDPOINT;
+use driver::GiteaDriver;
+
+use super::Driver;
+use crate::http::Client;
+
+/// Returns a new Gitea driver using the default xxxxxxx address.
+#[inline]
+pub fn default() -> Driver {
+    from(Client::new(GITEA_ENDPOINT, None))
+}
+
+/// Returns a new Gitea driver.
+#[inline]
+pub fn new(url: &str, token: Option<String>) -> Driver {
+    from(Client::new(url, token))
+}
+
+/// Returns a new Gitea driver using the given client.
+pub fn from(client: Client) -> Driver {
+    Driver::Gitea(GiteaDriver { client })
+}
