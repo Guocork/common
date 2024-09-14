@@ -42,3 +42,24 @@ pub fn new(url: &str, token: Option<String>) -> Driver {
 pub fn from(client: Client) -> Driver {
     Driver::Gitea(GiteaDriver { client })
 }
+
+#[cfg(test)]
+mod test {
+    use super::constants::GITEA_ENDPOINT;
+    use crate::{http::Client, scm::driver::gitea};
+
+    #[test]
+    fn create_gitea_driver() {
+        let _driver = gitea::default();
+    }
+
+    #[test]
+    fn create_gitea_driver_from_client() {
+        let _driver = gitea::from(Client::new(GITEA_ENDPOINT, None));
+    }
+
+    #[test]
+    fn create_github_enterprise_driver() {
+        let _driver = gitea::new("", None);
+    }
+}
