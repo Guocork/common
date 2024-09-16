@@ -11,3 +11,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+use crate::{http::Client, scm::content::ContentService};
+use crate::scm::content::Content;
+use crate::scm::content::File;
+
+pub struct GiteaContentService {
+    pub client: Client,
+}
+
+impl ContentService for GiteaContentService {
+    fn find(&self, repo: &str, path: &str, reference: &str) -> anyhow::Result<Content> {
+        todo!()
+    }
+
+    fn list(&self, repo: &str, path: &str, reference: &str) -> anyhow::Result<Vec<File>> {
+        todo!()
+    }
+}

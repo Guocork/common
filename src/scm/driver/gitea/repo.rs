@@ -11,3 +11,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+use crate::{http::Client, scm::repo::RepositoryService};
+use crate::scm::repo::Repository;
+
+pub struct GiteaRepoService {
+    pub client: Client,
+}
+
+impl RepositoryService for GiteaRepoService {
+    fn find(&self, repo: &str) -> anyhow::Result<Option<Repository>> {
+        todo!()
+    }
+}

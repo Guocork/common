@@ -22,7 +22,7 @@ pub struct GiteaDriver {
     pub client: Client,
 }
 
-impl DriverTrait for GiteaDriver{
+impl DriverTrait for GiteaDriver {
     fn contents(&self) -> Box<dyn ContentService> {
         todo!()
     }
