@@ -17,6 +17,9 @@ use crate::scm::driver::DriverTrait;
 use crate::scm::content::ContentService;
 use crate::scm::git::GitService;
 use crate::scm::repo::RepositoryService;
+use super::content::GiteaContentService;
+use super::git::GiteaGitService;
+use super::repo::GiteaRepoService;
 
 pub struct GiteaDriver {
     pub client: Client,
@@ -24,14 +27,35 @@ pub struct GiteaDriver {
 
 impl DriverTrait for GiteaDriver {
     fn contents(&self) -> Box<dyn ContentService> {
-        todo!()
+        Box::new(GiteaContentService {
+            client: self.client.clone(),
+        })
     }
 
     fn git(&self) -> Box<dyn GitService> {
-        todo!()
+        Box::new(GiteaGitService {
+            client: self.client.clone(),
+        })
     }
 
     fn repositories(&self) -> Box<dyn RepositoryService> {
-        todo!()
+        Box::new(GiteaRepoService {
+            client: self.client.clone(),
+        })
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use crate::scm::driver::{gitea, DriverTrait};
+
+    #[test]
+    fn return_git_service() {
+        gitea::default().git();
+    }
+
+    #[test]
+    fn return_repo_service() {
+        gitea::default().repositories();
     }
 }
